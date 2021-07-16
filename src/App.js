@@ -3,18 +3,12 @@ import React, { Component } from 'react';
 import logo from './acre-logo.svg';
 import './App.min.css';
 
-function capitalizeFirstLetter(string) {
-  let newString = string.toLowerCase();
-  return newString.charAt(0).toUpperCase() + newString.slice(1);
-}
+const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: this.props.users,
-    };
-  }
+  state = {
+    users: this.props.users,
+  };
 
   setFilter = (event) => {
     this.setState({ filter: event.target.value });
@@ -22,6 +16,7 @@ class App extends Component {
 
   render() {
     const list = this.state.users.filter((user) => (this.state.filter ? user.role.includes(this.state.filter) : user.role));
+
     return (
       <div className="app">
         <header className="app-header">
@@ -30,6 +25,7 @@ class App extends Component {
           <h1>Welcome to acre</h1>
 
           <hr />
+
           <h2>Users</h2>
 
           <select onChange={this.setFilter} defaultValue={'DEFAULT'}>
@@ -53,6 +49,9 @@ class App extends Component {
             </ul>
           ) : (
             <p>
+              <span role="img" aria-label="Sorry,">
+                😞
+              </span>{' '}
               No <strong>{capitalizeFirstLetter(this.state.filter)}</strong> users found.
             </p>
           )}

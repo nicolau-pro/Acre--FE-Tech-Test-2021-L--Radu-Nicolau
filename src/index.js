@@ -1,6 +1,7 @@
-// Following: https://www.apollographql.com/docs/react/get-started/
 import React from 'react';
 import { render } from 'react-dom';
+
+// Followed: https://www.apollographql.com/docs/react/get-started/
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 import App from './App';
@@ -24,7 +25,6 @@ client
     query: USERS,
   })
   .then((result) => {
-    console.log(result.data.users);
     render(
       <ApolloProvider client={client}>
         <App users={result.data.users.filter((user) => user.name)} />
