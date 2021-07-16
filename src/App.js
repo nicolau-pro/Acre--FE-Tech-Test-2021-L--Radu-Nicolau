@@ -47,6 +47,7 @@ class App extends Component {
               {list.map((user, index) => (
                 <li key={index}>
                   {user.name} <span>•</span> <strong>{user.role.map((role, index, arr) => `${capitalizeFirstLetter(role)}${index < arr.length - 1 ? ', ' : ''}`)}</strong>
+                  {user.role.includes('ADMIN') ? <button>🞦 Create</button> : null}
                 </li>
               ))}
             </ul>

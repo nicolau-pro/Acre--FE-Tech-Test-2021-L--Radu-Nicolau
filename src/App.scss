@@ -2,7 +2,11 @@ $color-light: white;
 $color-highlight: #80e5e3;
 $color-primary: #187cf5;
 $color-secondary: #2e2e60;
-$color-cta: rgba(0, 0, 0, 0.05);
+$border-radius: 6px;
+
+* {
+  transition: all 0.3s ease;
+}
 
 .app {
   font-family: 'Roboto', sans-serif;
@@ -54,17 +58,30 @@ li {
   strong {
     color: $color-primary;
   }
+
+  button {
+    background-color: $color-primary;
+    border: none;
+    border-radius: $border-radius;
+    color: $color-light;
+    cursor: pointer;
+    margin-left: 1em;
+
+    &:hover {
+      box-shadow: 0 0 8px $color-highlight;
+      opacity: 0.8;
+    }
+  }
 }
 
 select {
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius;
   box-shadow: 0 0 70px $color-highlight;
   color: $color-primary;
   font-weight: bold;
   outline: none;
   padding: 0.5em;
-  transition: all 0.5s ease;
 
   option {
     color: $color-primary;
