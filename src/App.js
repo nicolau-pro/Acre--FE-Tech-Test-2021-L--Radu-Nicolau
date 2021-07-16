@@ -1,11 +1,27 @@
-import React, { Component } from "react";
-import { ApolloProvider } from "react-apollo";
+import React, { Component } from 'react';
 
-import logo from "./acre-logo.svg";
-import "./App.css";
+import logo from './acre-logo.svg';
+import './App.min.css';
+
+function capitalizeFirstLetter(string) {
+  let newString = string.toLowerCase();
+  return newString.charAt(0).toUpperCase() + newString.slice(1);
+}
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: this.props.users,
+    };
+  }
+
+  setFilter = (event) => {
+    this.setState({ filter: event.target.value });
+  };
+
   render() {
+    const list = this.state.users.filter((user) => (this.state.filter ? user.role.includes(this.state.filter) : user.role));
     return (
       <div className="app">
         <header className="app-header">
@@ -13,22 +29,32 @@ class App extends Component {
 
           <h1>Welcome to acre</h1>
 
+          <hr />
           <h2>Users</h2>
 
-          <select>
+          <select onChange={this.setFilter} defaultValue={'DEFAULT'}>
+            <option value="DEFAULT" hidden disabled>
+              Filter...
+            </option>
             <option value="ADMIN">Admin</option>
-            <option value="ADMIN">Broker</option>
+            <option value="BROKER">Broker</option>
             <option value="ADVISOR">Advisor</option>
+            <option value="CONTRACTOR">Contractor</option> {/* Added an option with no users to render info <p> */}
           </select>
 
-          <ul>
-            <li>
-              John <strong>Admin</strong>
-            </li>
-            <li>
-              Mary <strong>Admin</strong>
-            </li>
-          </ul>
+          {list.length > 0 ? (
+            <ul>
+              {list.map((user, index) => (
+                <li key={index}>
+                  {user.name} <span>•</span> <strong>{user.role.map((role, index, arr) => `${capitalizeFirstLetter(role)}${index < arr.length - 1 ? ', ' : ''}`)}</strong>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>
+              No <strong>{capitalizeFirstLetter(this.state.filter)}</strong> users found.
+            </p>
+          )}
         </header>
       </div>
     );

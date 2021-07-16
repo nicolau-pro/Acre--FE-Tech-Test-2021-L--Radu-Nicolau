@@ -1,3 +1,9 @@
+$color-light: white;
+$color-highlight: #80e5e3;
+$color-primary: #187cf5;
+$color-secondary: #2e2e60;
+$color-cta: rgba(0, 0, 0, 0.05);
+
 .app {
   font-family: 'Roboto', sans-serif;
 }
@@ -8,8 +14,8 @@
 
 .app-header {
   align-items: center;
-  background-color: white;
-  color: #2e2e60;
+  background-color: $color-light;
+  color: $color-secondary;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +23,7 @@
 
 hr {
   border: 0;
-  border-bottom: 1px dashed #187cf5;
+  border-bottom: 1px dashed $color-primary;
   min-width: 400px;
   width: 50%;
 }
@@ -40,32 +46,32 @@ li {
   letter-spacing: 0.03em;
   padding: 0.5em;
   text-align: center;
-}
 
-li span {
-  color: #80e5e3;
-}
+  span {
+    color: $color-highlight;
+  }
 
-li strong {
-  color: #187cf5;
+  strong {
+    color: $color-primary;
+  }
 }
 
 select {
   border: none;
   border-radius: 4px;
-  box-shadow: 0 0 70px #80e5e3;
-  color: #187cf5;
+  box-shadow: 0 0 70px $color-highlight;
+  color: $color-primary;
   font-weight: bold;
   outline: none;
   padding: 0.5em;
   transition: all 0.5s ease;
-}
 
-select option {
-  color: #187cf5;
-}
+  option {
+    color: $color-primary;
+  }
 
-select:hover {
-  box-shadow: 0 0 20px 5px #80e5e3;
-  padding: 0.5em;
+  &:hover {
+    box-shadow: 0 0 20px 5px $color-highlight;
+    padding: 0.5em;
+  }
 }
